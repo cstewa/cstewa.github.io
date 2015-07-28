@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <xmp>
 
 # RBENV vs RVM
@@ -90,7 +91,7 @@ Because shims are at the begining of your path, your system finds the shim named
 
 `rbenv exec` determines which Ruby version you want to use (in [this](https://github.com/sstephenson/rbenv#choosing-the-ruby-version) order), ensures that the command (`rspec`)  will use that version by prepending the version's executable to `PATH`, and then runs it. The order in which rbenv returns the Ruby version to be prepended is numbered below:
 
-*~/usr/local/Cellar/rbenv/0.4.0/libexec/rbenv-exec:*[^1]
+*~/usr/local/Cellar/rbenv/0.4.0/libexec/rbenv-exec:*<sup>1</sup>
 
     # Set RBENV_VERSION to "rbenv-version-name". See "rbenv-version-name" script below. 
     export RBENV_VERSION="$(rbenv-version-name)"
@@ -490,7 +491,7 @@ Both tools have similar ways of enabling you to manually and automatically switc
 Consider which approach seems more intuitive to you overall and if the complexity of rvm justifies the benefits it has, if any, over rbenv. If you can't find any benefits, rbenv is the way to go :)
 
 
-[^1]: This assumes you have installed Homebrew.
+<sup>1</sup> This assumes you have installed Homebrew.
 [^2]: See `_rvm_use` function in `~/.rvm/scripts/functions/selector` file above.
 [^3]: See `rvm_ruby_binary` in `~/.rvm/scripts/functions/selector` file above.
 [^4]: See `RBENV_BIN_PATH` variable in `rbenv-exec` file above.
