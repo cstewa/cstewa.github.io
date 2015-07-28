@@ -331,7 +331,7 @@ If you'll always want to use a specific Ruby version in a specific directory (ie
 
 As you saw earlier, to enable rvm to automatically switch Ruby versions, you can set the version in any of [these files](https://rvm.io/workflow/projects).
 
-If you want to change the Ruby version you are currently using, you can run `rvm use {version}` at any point. If you want to change the Ruby version rvm will always use, you can run `rvm --default use {version}` at any point. Both of these functions ultimately run `__rvm_use`[^2] and are defined in rvm's "command line interface" script:
+If you want to change the Ruby version you are currently using, you can run `rvm use {version}` at any point. If you want to change the Ruby version rvm will always use, you can run `rvm --default use {version}` at any point. Both of these functions ultimately run `__rvm_use`<sup>2</sup> and are defined in rvm's "command line interface" script:
 
 *~/.rvm/scripts/cli:*
 
@@ -408,7 +408,7 @@ Ruby-build installs them to `~/.rbenv/versions`. If you open, for example, `~/.r
 
     $ rvm install {version}
 
-Say your version was 2.2.2. Rvm creates a folder called `~/.rvm/gems/ruby-2.2.2/bin`. In this folder it stores a script that wraps the Ruby binary[^3], which is located here: `~/.rvm/rubies/ruby-2.2.2/bin/ruby`. RubyGems also installs gem wrapper scripts here.
+Say your version was 2.2.2. Rvm creates a folder called `~/.rvm/gems/ruby-2.2.2/bin`. In this folder it stores a script that wraps the Ruby binary<sup>3</sup>, which is located here: `~/.rvm/rubies/ruby-2.2.2/bin/ruby`. RubyGems also installs gem wrapper scripts here.
 
 ## Installing and managing gems
 </br>
@@ -427,7 +427,7 @@ The `bundle-install` man file (`~/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems
 
     $ gem install rspec 
 
-When `gem` is called, the respective rbenv shim is invoked. As you read earlier, the shim passes the command and its arguments to `rbenv exec`. `Rbenv exec` locates the proper version of Ruby and prepends that version's binary to your `$PATH`.[^4] 
+When `gem` is called, the respective rbenv shim is invoked. As you read earlier, the shim passes the command and its arguments to `rbenv exec`. `Rbenv exec` locates the proper version of Ruby and prepends that version's binary to your `$PATH`.<sup>4</sup>
 
 When `rbenv-exec` runs your `gem install rspec` command, RubyGems looks for the directory where your Ruby version is installed (specifically `{version}/bin`), finding it in your $PATH. There, it creates script called a [Binstub](https://github.com/sstephenson/rbenv/wiki/Understanding-binstubs). Binstubs prepare the `$LOAD_PATH` with the gem's dependencies before the gem executable is called: 
 
@@ -451,7 +451,7 @@ When `rbenv-exec` runs your `gem install rspec` command, RubyGems looks for the 
 
 RubyGems also generates the gem's actual executable file, which lives here: `~/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/rspec-core-2.14.8/exe/rspec`
 
-That's it! Your gem is installed! Now, whenever you run `rspec spec/features/edit.rb`, the shim, which calls the binstub[^5], which calls the executable, is called. 
+That's it! Your gem is installed! Now, whenever you run `rspec spec/features/edit.rb`, the shim, which calls the binstub<sup>5</sup>, which calls the executable, is called. 
 
 ####Managing installed gems 
 
@@ -466,7 +466,7 @@ Whenever you install/uninstall a gem with an executable, run `rbenv rehash`. Thi
 
 ####Where gems are installed 
 
-Both rbenv and rvm direct RubyGems to the directory in which to install gems by adding the a directory ending in `{version}/bin` to `PATH`[^6]. Rvm's gems are installed in `.rvm/gems/{version}/bin`.  
+Both rbenv and rvm direct RubyGems to the directory in which to install gems by adding the a directory ending in `{version}/bin` to `PATH`<sup>6</sup>. Rvm's gems are installed in `.rvm/gems/{version}/bin`.  
 
 ####Managing installed gems
 
@@ -492,11 +492,11 @@ Consider which approach seems more intuitive to you overall and if the complexit
 
 
 <sup>1</sup> This assumes you have installed Homebrew.
-[^2]: See `_rvm_use` function in `~/.rvm/scripts/functions/selector` file above.
-[^3]: See `rvm_ruby_binary` in `~/.rvm/scripts/functions/selector` file above.
-[^4]: See `RBENV_BIN_PATH` variable in `rbenv-exec` file above.
-[^5]: See last line of `rbenv-exec` file above.
-[^6]: See `GEM_HOME` in `~/.rvm/scripts/functions/selector`.
+<sup>2</sup>  See `_rvm_use` function in `~/.rvm/scripts/functions/selector` file above.
+<sup>3</sup>  See `rvm_ruby_binary` in `~/.rvm/scripts/functions/selector` file above.
+<sup>4</sup>  See `RBENV_BIN_PATH` variable in `rbenv-exec` file above.
+<sup>5</sup>  See last line of `rbenv-exec` file above.
+<sup>6</sup>  See `GEM_HOME` in `~/.rvm/scripts/functions/selector`.
 
 </xmp>
 
